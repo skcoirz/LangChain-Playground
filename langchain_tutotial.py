@@ -64,5 +64,5 @@ tools = load_tools(["ddg-search", "llm-math"], llm=llm)
 agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
 
 # Now let's test it out!
-agent.run("What was the high temperature in SF yesterday in Fahrenheit? What is that number raised to the .023 power?")
+agent.run("When was Washington D.C. built? How many years til today?")
 
