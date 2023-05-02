@@ -230,20 +230,15 @@ def test_agent_chain_chat_bot():
 	from langchain.agents import AgentType
 	from langchain.chat_models import ChatOpenAI
 	from langchain.llms import OpenAI
+	from langchain.utilities.duckduckgo_search import DuckDuckGoSearchAPIWrapper
 
-	# First, let's load the language model we're going to use to control the agent.
 	chat = ChatOpenAI(temperature=0)
-
-	# Next, let's load some tools to use. Note that the `llm-math` tool uses an LLM, so we need to pass that in.
 	llm = OpenAI(temperature=0)
-	tools = load_tools(["serpapi", "llm-math"], llm=llm)
+	tools = load_tools(["ddg-search", "llm-math"], llm=llm)
 
-
-	# Finally, let's initialize an agent with the tools, the language model, and the type of agent we want to use.
 	agent = initialize_agent(tools, chat, agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
-
-	# Now let's test it out!
 	agent.run("Who is Olivia Wilde's boyfriend? What is his current age raised to the 0.23 power?")
+test_agent_chain_chat_bot()
 
 def test_chat_with_memory():
 	from langchain.prompts import (
